@@ -19,34 +19,59 @@ class MyApp extends StatelessWidget {
             children: <Widget>[
               new Text('devicePixelRatio: ${ui.window.devicePixelRatio}'),
               new Divider(),
-              new Text('Image.asset with different scales:'),
               new Row(
                 children: <Widget>[
-                  new Expanded(child: new Text('Scale null')),
+                  new Expanded(child: new Text('Image.asset')),
                   new Image.asset('images/test.png', width: 48.0, height: 48.0)
                 ],
               ),
+              new Divider(),
               new Row(
                 children: <Widget>[
-                  new Expanded(child: new Text('Scale 1x')),
-                  new Image.asset('images/test.png', scale: 1.0, width: 48.0, height: 48.0)
-                ],
-              ),
-              new Row(
-                children: <Widget>[
-                  new Expanded(child: new Text('Scale 2x')),
-                  new Image.asset('images/test.png', scale: 2.0, width: 48.0, height: 48.0)
-                ],
-              ),
-              new Row(
-                children: <Widget>[
-                  new Expanded(child: new Text('Scale 3x')),
-                  new Image.asset('images/test.png', scale: 3.0, width: 48.0, height: 48.0)
+                  new Text('Image.asset\nwith BoxFit.none\nand repeat'),
+                  new Expanded(
+                    child: new Image.asset(
+                      'images/test.png',
+                      height: 200.0,
+                      fit: BoxFit.none,
+                      repeat: ImageRepeat.repeat,
+                    ),
+                  )
                 ],
               ),
               new Divider(),
-              new Text(''),
-              new Container()
+              new Row(
+                children: <Widget>[
+                  new Text('Container\nwith BoxDecoration'),
+                  new Expanded(
+                    child: new Container(
+                      height: 200.0,
+                      decoration: new BoxDecoration(
+                        image: new DecorationImage(
+                            image: new AssetImage('images/test.png'), repeat: ImageRepeat.repeat, fit: BoxFit.none),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              new Divider(),
+              new Row(
+                children: <Widget>[
+                  new Text('Container\nwith BoxDecoration\nvariant 1.0x'),
+                  new Expanded(
+                    child: new Container(
+                      height: 200.0,
+                      decoration: new BoxDecoration(
+                        image: new DecorationImage(
+                          image: new ExactAssetImage('images/test.png', scale: 1.0),
+                          repeat: ImageRepeat.repeat,
+                          fit: BoxFit.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
